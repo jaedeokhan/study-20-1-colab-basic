@@ -129,11 +129,42 @@ https://<strong>colab.research.google.com/github/</strong>jaedeokhan/20_1_AI_Int
 
 다음과 같이 colab.research.google.com/github , blob만 수정을 해주면 된다.
 
+### 3.1 구글 코랩(Google colab)의 런타임 연결 끊김을 방지하는 방법
+구글 코랩(Google colab)은 90분 동안 아무런 interaction이 없거나, 총 12시간의 세션 timeout이 존재한다.
 
+더 쉽게 설명하자면, colab에서 학습을 돌려놓고 90분 동안 브라우저에 아무런 interaction을 주지 않는다면, 긴 학습을 다 수행하지 못하고 끊겨버릴 수 있다.
 
+이를 방지하기 위해서는 javascript 코드를 소개하고, 이 코드를 console 창에 실행시킴으로써 90분의 idle timeout을 방지하는 방법을 소개
 
+> 1. chorme F12 개발자 콘솔 열기
+개발자 콘솔에서 가장 밑에 코드를 입력할 수 있는 창에다가 다음과 같이 입력하기
 
+```javascript
+function ClickConnect() {
+    console.log("코랩 연결 끊김 방지");
+    document.querySelector("colab-toolbar-button#connect").click()
+}
+setInterval(ClickConnect, 60 * 1000)
+```
+그러면, 매 1분마다 콘솔창에 "코랩 연결 끊김 방지" 문구와 함께 <storng>colab idle timeout이 되는 것을 방지</strong>
 
+### 3.2 Google Colab에서 python 패키지를 영구적(permanetly)으로 설치하는 방법
+Colab에서 영구적(permanetly)으로 파이썬 패키지를 설치(install)하는 방법에 대해 공유
+
+Google Colab은 정말 좋은 무료 환경입니다. 꽤 좋은 성능을 내는 하드웨어 자원을 무료로 사용할 수 있습니다. 때문에, 머신러닝/딥러닝 을 학습하시는 분들께는 정말 좋은 환경이라 최근 사용하시는 분들이 급격히 늘어나고 있습니다.
+
+pre-built되는 library가 있지만, 항상 최신 버전으로 지원하고 있지 않기 때문에,
+
+때론 !pip install 패키지 명령어를 매번 실행해주면서 패키지를 업그레이드 해줘야할 필요가 있습니다.
+
+* Google Colab에서 permanent하게 패키지를 설치하기
+이제부터 제가 알려드리는 방식대로 진행하시면, colab을 새로 열어도 자동으로 제가 설치한 패키지를 가져올 수 있습니다.
+
+아래의 방식은 다른 파이썬 패키지도 동일하게 적용할 수 있습니다.
+
+설치된 패키지를 구글 드라이브에 저장을 하게 되는데요. 저장할 폴더를 먼저 만들어 줍니다.
+
+저는 Colab Notebooks에 my_env라는 폴더를 만들어 주고 패키지를 그곳에 저장하도록 하겠습니다.
 
 
 
